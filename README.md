@@ -1,7 +1,7 @@
 # task2
 
 Installation
-============
+------------
 
 ```shell
 python3 -m venv venv
