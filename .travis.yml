@@ -5,7 +5,7 @@ python:
 #addons:
   #postgresql: "9.4"
 install:
-  - pip install pip-tools wheel
+  - pip install pip-tools wheel pkg-resources==0.0.0
   - pip install -r requirements.txt
 before_script:
   - createuser -U postgres -d task2
