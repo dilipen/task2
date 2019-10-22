@@ -1,0 +1,1 @@
+curl -X POST -d "grant_type=password&username=dilipen&password=123456&client_id=VOWDKbkTSoO1VvmzkzdlVknzEygii7Ch7XMTKtMW&client_secret=9FLWLk8LlzF1HhkNlUkmSsrtrufiG8fYKQx2CHzuzOEX2TCMuyRg8BkarGfsebKmI3IKF2iaIMyqkM2Mu84LprOf8Bl8FAeXrPT3MO2iS1eqIJASuNcPrvJjI4LsSX8b" http://localhost:8000/o/token/

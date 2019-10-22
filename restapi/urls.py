@@ -27,6 +27,7 @@ schema_view = get_swagger_view(title='Rest API')
 
 urlpatterns = [
     url(r'^$', schema_view),
+    url(r'^o/', include('oauth2_provider.urls', namespace='oauth2_provider')),
     url(r'^admin/', admin.site.urls),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
 ]

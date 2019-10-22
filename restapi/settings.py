@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
+import dj_database_url
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -39,6 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework_swagger',
+    'oauth2_provider',
+    'corsheaders',
     # 'devapp',
     'myapp',
 ]
@@ -51,7 +54,11 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    'corsheaders.middleware.CorsMiddleware',
+
     'myapp.middleware.headers.MyHeaders',
+
 ]
 
 ROOT_URLCONF = 'restapi.urls'
@@ -77,6 +84,17 @@ WSGI_APPLICATION = 'restapi.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
+
+"""
+DATABASES = {
+    'default': dj_database_url.config(
+        env='DATABASE_URL',
+        #default='postgres://VPAGE_DATABASE_USER:VPAGE_DATABASE_PASSWORD@localhost:5432/VPAGE_DATABASE_NAME'
+        default='postgres://vpage_user:password@localhost:5432/vpagedb_new_270619'
+    )
+}
+"""
+
 
 DATABASES = {
     'default': {
@@ -124,6 +142,11 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+OAUTH2_PROVIDER = {
+    # this is the list of available scopes
+    'SCOPES': {'read': 'Read scope', 'write': 'Write scope', 'groups': 'Access to your groups'}
+}
+
 REST_FRAMEWORK = {
     'DEFAULT_RENDERER_CLASSES': (
         'rest_framework.renderers.JSONRenderer',
@@ -134,9 +157,11 @@ REST_FRAMEWORK = {
     ],
     'DEFAULT_AUTHENTICATION_CLASSES': (
        'rest_framework.authentication.TokenAuthentication',
+       'oauth2_provider.contrib.rest_framework.OAuth2Authentication',
     ),
     'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAdminUser'
+        'rest_framework.permissions.IsAdminUser',
+        'rest_framework.permissions.IsAuthenticated',
     ),
     'DEFAULT_PAGINATION_CLASS': 'myapp.core.pagination.CustomPagination',
     'PAGE_SIZE': 50
@@ -159,3 +184,6 @@ SWAGGER_SETTINGS = {
         },
     },
 }
+
+CORS_ORIGIN_ALLOW_ALL = True
+DEBUG = True
