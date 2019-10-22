@@ -1,5 +1,5 @@
 devapp/*
 .idea/
 venv/*
-**/*.pyc
+**/__pycache__/*.pyc
 *.pyc
