@@ -89,8 +89,8 @@ WSGI_APPLICATION = 'restapi.wsgi.application'
 DATABASES = {
     'default': dj_database_url.config(
         env='DATABASE_URL',
-        #default='postgres://VPAGE_DATABASE_USER:VPAGE_DATABASE_PASSWORD@localhost:5432/VPAGE_DATABASE_NAME'
-        default='postgres://vpage_user:password@localhost:5432/vpagedb_new_270619'
+        #default='postgres://DATABASE_USER:DATABASE_PASSWORD@localhost:5432/DATABASE_NAME'
+        default='postgres://user:password@localhost:5432/db_new_270619'
     )
 }
 """
