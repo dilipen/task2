@@ -3,7 +3,6 @@ All Model should be an sql table.
 """
 
 # import uuid
-from django.db import models
 from django.utils import timezone
 
 # from django.contrib.auth.models import User
@@ -38,6 +37,7 @@ class UserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
+
 class Cob(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=200, blank=True, null=True)
@@ -66,7 +66,7 @@ class Company(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     modified_at = models.DateTimeField(auto_now=True)
     main_branch = models.ForeignKey(MainBranch, null=True, blank=True, on_delete=models.CASCADE)  # NOQA
-    
+
 
 class SubDomain(models.Model):
     id = models.AutoField(primary_key=True)
@@ -75,7 +75,7 @@ class SubDomain(models.Model):
     modified_at = models.DateTimeField(auto_now=True)
     company = models.ForeignKey(Company, null=True, blank=True, on_delete=models.CASCADE)  # NOQA
 
-    
+
 class Role(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=200, blank=True, null=True)
@@ -134,4 +134,3 @@ class UserNotification(models.Model):
     readed_at = models.DateTimeField(default=timezone.now)
     created_at = models.DateTimeField(auto_now_add=True)
     modified_at = models.DateTimeField(auto_now=True)
-
