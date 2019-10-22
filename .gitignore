@@ -2,3 +2,4 @@ devapp/*
 .idea/
 venv/*
 **/*.pyc
+*.pyc
