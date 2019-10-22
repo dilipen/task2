@@ -1,14 +1,18 @@
-sudo: false
-language: python
-python:
-  - "3.7.3"
-#addons:
-  #postgresql: "9.4"
-install:
-  - pip install pip-tools wheel pkg-resources==0.0.0
-  - pip install -r requirements.txt
-before_script:
-  #- createuser -U postgres -d task2
-  #- createdb -U postgres -O task2 task2
-script:
-  - python manage.py test
+stages:
+  - test
+
+test_job1:
+  stage: test
+  image: python:3.6
+  services:
+    - postgres:latest
+  variables:
+    DATABASE_URL: 'postgres://postgres:password@postgres:5432/vpagedb_new_270619'
+  before_script:
+    - apt-get update -qy
+    - apt-get install -y python-dev python-pip
+    - apt install -y postgresql postgresql-contrib postgresql-client libpq-dev
+    - pip install -r requirements.txt
+  script:
+    - export DEBIAN_FRONTEND=noninteractive
+    - python manage.py test
