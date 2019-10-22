@@ -12,4 +12,5 @@ before_script:
   - createuser -U postgres -d task2
   - createdb -U postgres -O task2 task2
 script:
+  - flake8 myapp
   - python manage.py test
