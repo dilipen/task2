@@ -5,7 +5,7 @@ python:
 addons:
   postgresql: "9.4"
 install:
-  - apt install python-pkg-resources
+  - sudo apt install python-pkg-resources
   - pip install wheel
   - pip install -r requirements.txt
 before_script:
